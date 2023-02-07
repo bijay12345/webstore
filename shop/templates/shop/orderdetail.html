@@ -1,31 +1,53 @@
 {%extends 'shop/base.html'%}
 {%block content%}
 
-<h4 id="orderdetail-total" style="margin: 2rem;">Total Bill Amount - ${{products.get_final_price}}</h4>
+<h4 id="orderdetail-total" style="margin: 2rem;">Total Bill Amount - ${{order.get_final_price}}</h4>
 <section id="orderdetail">
 		<div class="f1">
-		{%for product in products.item.all%}
+			{%if rated == False%}
+				<div class="stars">
+				  <form action="{%url 'review'%}" class="star-form" method="POST">
+				  	{%csrf_token%}
+				  	<div>
+					  	<input class="star star-5" id="star-5" value="5" type="radio" name="star"/>
+					    <label class="star star-5" for="star-5"></label>
+					    <input class="star star-4" id="star-4" value="4" type="radio" name="star"/>
+					    <label class="star star-4" for="star-4"></label>
+					    <input class="star star-3" id="star-3" value="3" type="radio" name="star"/>
+					    <label class="star star-3" for="star-3"></label>
+					    <input class="star star-2" id="star-2" value="2" type="radio" name="star"/>
+					    <label class="star star-2" for="star-2"></label>
+					    <input class="star star-1" id="star-1" value="1" type="radio" name="star"/>
+					    <label class="star star-1" for="star-1"></label>
+				  	</div>
+			        <button class="normal" id="rate-button" name="item_id" type="submit" value="{{product.id}}" class="ratebutton">
+						RATE
+					</button>
+				  </form>
+				</div>
+			{%endif%}
+
 			<div id="orderD">
-				<img src="{{product.item.image.url}}" width="200px" id="MainImg">
-				<div id="orderD-d">
+				<img id="orderinfo-img" src="{{product.item.image.url}}" width="200px" id="MainImg">
+				<div id="orderD-d" class="order-infoss">
 					<h6>{{product.item.company}} <span>{{product.size}}</span></h6>
 					<h4>{{product.item.name}}</h4>
 					<p>Quantity - {{product.quantity}}</p>
 					<p>Price- ${{product.item.price}}</p>
 					<p>Total pay - ${{product.get_total_price}}</p>
-					<p class="ordered-date">Ordered ON - {{products.ordered_date}}</p>
+					<p class="ordered-date">Ordered ON - {{order.ordered_date}}</p>
 				</div>
 			</div>
-		{%endfor%}
+
 		</div>
 
 		<div class="order-info">	
 			<h4>Billing Details</h4>
 			<h5 style="margin-top: 25px;">Contact: </h5>
-			<p><b>Primary number</b> - {{products.billing_address.primaryNumber}} <b class="b1"> Secondary number</b> - {{products.billing_address.secondaryNumber}}</p>
+			<p><b>Primary number</b> - {{order.billing_address.primaryNumber}} <b class="b1"> Secondary number</b> - {{order.billing_address.secondaryNumber}}</p>
 			<hr>
 			<h5 style="margin-top: 25px;">Address: </h5>
-			<p>{{products.billing_address.street}}, {{products.billing_address.address}}, {{products.billing_address.city}}, {{products.billing_address.state}}, <b>Pin</b> - {{products.billing_address.pincode}}</p>
+			<p>{{order.billing_address.street}}, {{order.billing_address.address}}, {{order.billing_address.city}}, {{order.billing_address.state}}, <b>Pin</b> - {{order.billing_address.pincode}}</p>
 			<hr>
 			<div class="buttons">
 				<a href="{%url 'shop'%}" class="buttn">Continue Shopping</a>

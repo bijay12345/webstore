@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from .models import Items,Order,OrderItem,BillingAddress
 from django.contrib.auth.models import User
-
+from users.models import Reviews
 
 class ItemSerializer(serializers.ModelSerializer):
 	image=serializers.ImageField(
@@ -30,6 +30,7 @@ class OrderItemSerializer(serializers.ModelSerializer):
 
 	def get_total_price(self,obj):
 		return obj.quantity*obj.item.price
+
 
 	class Meta:
 		model=OrderItem

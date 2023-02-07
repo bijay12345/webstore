@@ -11,7 +11,7 @@ from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Count
 from django.core.paginator import Paginator
-
+from users.models import Reviews
 
 
 @login_required
@@ -181,9 +181,17 @@ def remove_single_item_from_cart(request,id):
 
 
 def orderDetail(request,id):
-	orders=Order.objects.get(id=id)
+	item=OrderItem.objects.get(id=id)
 	items=Items.objects.all()
-	return render(request,"shop/orderdetail.html",{"products":orders,"items":items})
+
+	order=Order.objects.get(item=item,ordered=True,user=request.user)
+
+	rated=False
+
+	if Reviews.objects.filter(orderItem=item,reviewed=True).exists():
+		rated=True
+
+	return render(request,"shop/orderdetail.html",{"product":item,"items":items,"order":order,"rated":rated})
 
 
 

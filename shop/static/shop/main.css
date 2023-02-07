@@ -176,6 +176,18 @@ body{
 
 
 
+#message{
+	padding: 20px;
+	margin: auto;
+	background: #000;
+}
+
+.messages{
+	width: fit-content;
+	color: #fff;
+	margin: auto;
+}
+
 
 /*    START MEDIA QERY */
 

@@ -19,37 +19,44 @@
 	<div class="orders">	
 		<h3 class="order-heading">Your Orders <i class="fa-solid fa-cart-shopping"></i></h3>
 		{%for orderss in orders%}
-			<div class="order-details" onclick="window.location.href='{%url 'orderDetail' orderss.id%}'">
+			<div class="order-details" >
 				<h5 class="order-no">Order No. {{forloop.counter}}</h5>
 				<div id="order-row">
-				{%for order in orderss.item.all%}
-					<div class="order-card">
-						<img src="{{order.item.image.url}}">
-						<p class="ordered-date"><i class="fa-regular fa-calendar-days"></i> {{orderss.ordered_date}}</p>
-						<h5>{{order.item.company}}</h5>
-						<h5>{{order.item.name}}</h5>
-						<p class="price">$ {{order.get_total_price}}</p>
-						<p style="text-align: center; color: blue;">View </p>
-					</div>
 
-				{%endfor%}
+					{%for order in orderss.item.all%}
+						<div class="order-card" onclick="window.location.href='{%url 'orderDetail' order.id%}'">
+							<img src="{{order.item.image.url}}">
+							<p class="ordered-date"><i class="fa-regular fa-calendar-days"></i> {{orderss.ordered_date}}</p>
+							<h5>{{order.item.company}}</h5>
+							<h5>{{order.item.name}}</h5>
+							<p class="price">$ {{order.get_total_price}}</p>
+							<p style="text-align: center; color: blue;">View </p>
+						</div>
+					{%endfor%}
+
 				</div>
 			</div>
 		{%endfor%}
 	</div>
+
+<hr>
+
 	<div class="f1">
 		<h3>liked Products <i class="fa-solid fa-heart" id="liked"></i></h3>
 		{%for product in likedProducts%}
-			<div id="orderD"  onclick="window.location.href='{%url 'detail' product.id%}'">
-				<img src="{{product.image.url}}" width="100px" id="MainImg">
-				<div id="orderD-d">
-					<h6>{{product.company}}</h6>
+			<div class="liked-product-card" onclick="window.location.href='{%url 'detail' product.id%}'">
+				<h6>{{product.company}}</h6>
+				<img src="{{product.image.url}}">
+				<div>
 					<h4>{{product.name}}</h4>
 					<p>Price- ${{product.price}}</p>
 				</div>
 			</div>
 		{%endfor%}
 	</div>
+
+
+
 
 </section>
 

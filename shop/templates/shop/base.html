@@ -42,7 +42,9 @@
 
 	{%if messages%}
 		{%for message in messages%}
-			{{message}}
+		<div id="message">
+			<p class="messages">{{message}}</p>
+		</div>
 		{%endfor%}
 	{%endif%}
 	{%block content%}
