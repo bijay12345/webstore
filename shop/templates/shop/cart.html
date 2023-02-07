@@ -1,0 +1,85 @@
+{%extends 'shop/base.html'%}
+{%block content%}
+
+
+	<section id="page-header" class="cart-header">
+		<h2>#Happy Shopping</h2>
+		<p>Thank you for considering <b>US</b></p>
+	</section>
+
+	<section id="cart" class="section-p1">
+		<table width="100%">
+			<thead>
+				<tr>
+					<td>Remove</td>
+					<td>Image</td>
+					<td>Product</td>
+					<td>Size</td>
+					<td>Price</td>
+					<td>Quantity</td>
+					<td>Subtotal</td>
+				</tr>
+			</thead>
+			<tbody>
+
+
+				{%for order_item in orders.item.all %}
+					<tr>
+						<td><a href="{%url 'remove_from_cart' order_item.item.id%}"><i class="far fa-times-circle" style="color: red;"></i></a></td>
+						<td><img src="{{order_item.item.image.url}}"></td>
+						<td>{{order_item.item.name}}</td>
+						<td>{{order_item.size}}</td>
+						<td>{{order_item.item.price}}</td>
+						<td>
+							<a href="{%url 'remove_single_item_from_cart' order_item.item.id%}"><i class="fa-solid fa-minus" style="margin-right: 5px; background: blue; color: white; padding: 2px;"></i></a>
+							<b>{{order_item.quantity}}</b>
+							<a href="{%url 'add_to_cart' order_item.item.id%}"><i class="fa-solid fa-plus" style="margin-left: 5px; background: blue; color: white; padding: 2px;"></i></a>
+						</td>
+						<td>${{order_item.get_total_price}}</td>
+					</tr>
+				  {%empty%}
+			      <tr>
+			        <td>Your Cart is Empty</td>
+			        <td colspan="4"><a href="{%url 'home'%}">Continue Shopping</a></td>
+			      </tr>
+				{%endfor%}
+				
+
+			</tbody>
+		</table>
+	</section>
+
+	<section id="cart-add" class="section-p1">
+		<div id="coupon" class="">
+			<h3>Apply Coupon</h3>
+			<div>
+				<input type="text" placeholder="Enter Your coupon" name="">
+				<button class="normal">Apply</button>
+			</div>
+		</div>
+		{%if orders.final_price%}
+		<div id="subtotal">
+			<h3>Cart Total</h3>
+			<table>
+				<tr>
+					<td>Cart Subtotal</td>
+					<td>${{orders.final_price}}</td>
+				</tr>
+				<tr>
+					<td>Shipping</td>
+					<td>Free</td>
+				</tr>
+				<tr>
+					<td><strong>Total</strong></td>
+					<td><strong>${{orders.final_price}}</strong></td>
+				</tr>
+			</table>
+			<a class="buttn" href="{%url 'checkoutView'%}">Proceed to checkout</a>
+			<a class="buttn" href="{%url 'shop'%}">Continue Shopping</a>
+
+		</div>
+		{%endif%}
+	</section>
+	
+
+{%endblock content%}

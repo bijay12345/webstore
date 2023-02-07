@@ -1,0 +1,21 @@
+{%extends 'shop/base.html'%}
+{%block content%}
+	<section id="page-header" class="blog-header">
+		<h2>#READ MORE</h2>
+		<p>Read all case studies about our products!</p>
+	</section>
+
+	<section id="blog">
+			<div class="blog-box">
+				<div class="blog-img">
+					<img src="{{blog.image}}">
+				</div>
+				<div class="blog-details">
+					<h4>{{blog.title}}</h4>
+					<p>{{blog.description}}</p>
+				</div>
+				<h1>{{blog.small_date}}</h1>
+			</div>
+	</section>
+
+{%endblock content%}

@@ -1,0 +1,104 @@
+{%extends 'shop/base.html'%}
+{%block content%}
+	<section id="page-header">
+		<h2>#stay home</h2>
+		<p>Save more with coupons & up to 70% off!</p>
+	</section>
+
+	<section id="product1" class="section-p1">
+
+			<form id="selection" action="{% url 'shop' %}" method="POST" autocomplete="off">
+
+		      {% csrf_token %}
+			    <select class="filter" name='choice' onchange='if(this.value != 0) { this.form.submit(); }'>
+					<option value="0" autocomplete="off">Filter</option>
+					<option value="S" autocomplete="off">Shirts</option>
+					<option value="PN" autocomplete="off">Pants</option>
+					<option value="GL" autocomplete="off">Goggles</option>
+					<option value="SH" autocomplete="off">Shoes</option>
+					<option value="SK" autocomplete="off">Skirts</option>
+			    </select>
+		    </form>
+
+
+		<div class="pro-container">
+
+			{%for product in items%}
+
+
+				<div class="pro" onclick="window.location.href='{%url 'detail' product.id%}'">
+
+					<!--         like button         -->
+
+					<div >
+						<form action="{% url 'like' %}" method="POST">
+					      {% csrf_token %}
+					      {% if request.user.username in product.likers %}
+					          <button name="itemId" type="submit" class="likeButton" value="{{product.id}}">
+				            	<i class="fa-solid fa-heart" id="liked"></i>
+				         	  </button>
+			         	  {%else%}
+			         	  	  <button name="itemId" type="submit" class="likeButton" value="{{product.id}}">
+				            	<i class="fa-regular fa-heart" id="unliked"></i>
+				         	  </button>
+			         	  {%endif%}
+					    </form>
+					</div>
+
+					<!--       Item Card Body     -->
+
+					<img src="{{product.image}}" alt="">
+
+					<div class="des">
+						<span>{{product.company}}</span>
+						<h5>{{product.name}}</h5>
+						<div class="star">
+							<i class="fas fa-star"></i>
+							<i class="fas fa-star"></i>
+							<i class="fas fa-star"></i>
+							<i class="fas fa-star"></i>
+							<i class="fas fa-star"></i>
+						</div>
+						<h4>${{product.price}}</h4>
+					</div>
+				</div>
+				{%empty%}
+				SORRY NO DATA AVAILABLE RIGHT NOW
+				<a href="{%url 'shop'%}">Continue Shopping</a>
+			{%endfor%}
+		</div>
+	</section>
+
+
+	<section id="pagination" class="section-p1">
+			{%if items.has_previous%}
+				<a href="?page={{items.previous_page_number}}"><i class="fa-solid fa-arrow-left"></i></a>
+			{%endif%}
+
+			<span class="current">
+	            Page {{items.number}} of {{ items.paginator.num_pages }}.
+	        </span>
+
+			{%if items.has_next%}
+				<a href="?page={{items.next_page_number}}"><i class="fa-solid fa-arrow-right"></i></a>
+			{%endif%}
+	</section>
+
+
+	<section id="newsletter" class="section-p1 section-m1">
+		<div class="newstext">
+			<h4>
+				Sign up for newsletter
+			</h4>
+			<p>Get E-mail updates about or latest shop and <span>special offers.</span></p>
+		</div>
+		<div class="form">
+			<input type="text" name="email" placeholder="Your email address">
+			<button class="normal">
+				Sign Up
+			</button>
+		</div>
+		
+	</section>
+
+{%endblock content%}

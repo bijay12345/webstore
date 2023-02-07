@@ -1,0 +1,74 @@
+
+#page-header{
+	background-image: url("/media/banner/b1.jpg");
+	width: 100%;
+	height: 40vh;	
+	background-size: cover;
+	display: flex;
+	justify-content: center;
+	text-align: center;
+	flex-direction: column;
+	padding: 14px;
+}
+
+#page-header h2,
+#page-header p{
+	color: #fff;
+}
+
+#product1 #selection{
+	text-align: end;
+	margin-right: 15px;
+}
+
+#product1 #selection .filter{
+	padding: 10px;
+	border-color: brown;
+	border-radius: 5px;
+	font-weight: 600;
+}
+
+#product1 .pro-container .pro div form{
+	position: relative;
+}
+
+#product1 .pro-container .pro div form .likeButton{
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	border: none;
+	background: transparent;
+}
+
+#liked{
+	font-size: 1.5rem;
+	color: red;
+	cursor: pointer;
+}
+
+#unliked{
+	font-size: 1.5rem;
+	color: red;
+	cursor: pointer;
+}
+
+
+/*PAGINATION*/
+#pagination{
+	text-align: center;
+}
+
+#pagination a{
+	text-decoration: none;
+	background-color: #088178;
+	padding: 15px 20px;
+	border-radius: 4px;
+	color: #fff;
+	font-weight: 600;
+}
+
+#pagination a i{
+	font-size: 16px;
+	font-weight: 600 ;	
+}
+

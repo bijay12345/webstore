@@ -1,0 +1,12 @@
+{%extends 'shop/base.html'%}
+{%block content%}
+<section id="form-details">
+	<form method="POST" id="registerform">
+		{%csrf_token%}
+		<legend>Register</legend>
+		{{form}}
+		<button class="normal">Register</button>
+	</form>
+
+</section>
+{%endblock content%}

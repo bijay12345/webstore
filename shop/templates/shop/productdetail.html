@@ -1,0 +1,160 @@
+{%extends 'shop/base.html'%}
+{%block content%}
+
+
+<section id="prodetails" class="section-p1">
+	<div class="single-pro-image">
+		<img src="{{product.image.url}}" width="100%" id="MainImg">
+		<div class="small-img-group">
+			<div class="small-img-col">
+				<img src="{{product.image.url}}" width="100%" class="small-img">
+			</div>
+
+			<div class="small-img-col">
+				<img src="{{product.image2.url}}" width="100%" class="small-img">
+			</div>
+
+			<div class="small-img-col">
+				<img src="{{product.image3.url}}" width="100%" class="small-img">
+			</div>
+
+			<div class="small-img-col">
+				<img src="{{product.image4.url}}" width="100%" class="small-img">
+			</div>
+
+		</div>
+	</div>
+	<div class="single-pro-details">
+		<h6>{{product.company}}</h6>
+		<h4>{{product.name}}</h4>
+		<h2>${{product.price}}</h2>
+		<form method="POST" action="{%url 'add_to_cart' product.id%}">
+			{% csrf_token %}
+			<select name="choice">
+				<option value="None">select size</option>
+				<option value="XXL">XXL</option>
+				<option value="XL">XL</option>
+				<option value="L">L</option>
+				<option value="M">Medium</option>
+				<option value="S">Small</option>
+			</select>
+
+			<button type="submit" >
+					<i class="fa-solid fa-cart-plus"></i>
+					 Add
+			</button>
+		</form>
+		
+		<h4>Product Details</h4>
+		<span>{{product.description}}</span>
+
+	</div>
+
+</section>
+
+<section id="product1" class="section-p1">
+	<h2> Featured Products</h2>
+	<p>Summer Collection New Modern Design</p>
+	<div class="pro-container">
+		<div class="pro">
+			<img src="img/products/n1.jpg" alt="">
+			<div class="des">
+				<span>adidas</span>
+				<h5>Cartoon astronaut T-shirt</h5>
+				<div class="star">
+					<i class="fas fa-star"></i>
+					<i class="fas fa-star"></i>
+					<i class="fas fa-star"></i>
+					<i class="fas fa-star"></i>
+					<i class="fas fa-star"></i>
+				</div>
+				<h4>$77</h4>
+			</div>
+			<a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
+		</div>
+
+		<div class="pro">
+			<img src="img/products/n2.jpg" alt="">
+			<div class="des">
+				<span>adidas</span>
+				<h5>Cartoon astronaut T-shirt</h5>
+				<div class="star">
+					<i class="fas fa-star"></i>
+					<i class="fas fa-star"></i>
+					<i class="fas fa-star"></i>
+					<i class="fas fa-star"></i>
+					<i class="fas fa-star"></i>
+				</div>
+				<h4>$77</h4>
+			</div>
+			<a href="#">
+				<i class="fa-solid fa-cart-shopping cart"></i>
+			</a>
+		</div>
+
+		<div class="pro">
+			<img src="img/products/n3.jpg" alt="">
+			<div class="des">
+				<span>adidas</span>
+				<h5>Cartoon astronaut T-shirt</h5>
+				<div class="star">
+					<i class="fas fa-star"></i>
+					<i class="fas fa-star"></i>
+					<i class="fas fa-star"></i>
+					<i class="fas fa-star"></i>
+					<i class="fas fa-star"></i>
+				</div>
+				<h4>$77</h4>
+			</div>
+			<a href="#">
+				<i class="fa-solid fa-cart-shopping cart"></i>
+			</a>
+		</div>
+
+		<div class="pro">
+			<img src="img/products/n4.jpg" alt="">
+			<div class="des">
+				<span>adidas</span>
+				<h5>Cartoon astronaut T-shirt</h5>
+				<div class="star">
+					<i class="fas fa-star"></i>
+					<i class="fas fa-star"></i>
+					<i class="fas fa-star"></i>
+					<i class="fas fa-star"></i>
+					<i class="fas fa-star"></i>
+				</div>
+				<h4>$77</h4>
+			</div>
+			<a href="#">
+				<i class="fa-solid fa-cart-shopping cart"></i>
+			</a>
+		</div>
+	</div>
+</section>
+
+
+
+
+<script>
+	
+	var MainImg = document.getElementById("MainImg");
+	var smallimg = document.getElementsByClassName("small-img");
+
+	smallimg[0].onclick=function(){
+		MainImg.src = smallimg[0].src;
+	}
+
+	smallimg[1].onclick=function(){
+	MainImg.src = smallimg[1].src;
+	}
+
+	smallimg[2].onclick=function(){
+	MainImg.src = smallimg[2].src;
+	}
+	smallimg[3].onclick=function(){
+	MainImg.src = smallimg[3].src;
+	}
+
+</script>
+
+{%endblock content%}

@@ -1,0 +1,91 @@
+{%extends 'shop/base.html'%}
+{%block content%}
+
+
+	<section id="form-details">
+
+		<form method="POST" action="{%url 'checkoutView'%}">
+			{%csrf_token%}
+			<legend>Billing details</legend>
+			<div class="checkout-row">
+				<div>
+					<label for="phone">Primary Phone Number</label>
+					<input type="text" placeholder="eg: +91 8982xxxxxx" id="phone" name="phone">
+				</div>
+				<div>
+					<label for="Secondary_nuumber">Alternative Phone Number</label>
+					<input type="text" placeholder="eg: +91 8982xxxxxx" id="Secondary_nuumber" name="sec_number">					
+				</div>
+			</div>
+			<div class="checkout-row">
+				<div>
+					<label for="street">Street</label>
+					<input type="text" placeholder="street" id="for" name="street">
+				</div>
+				<div>
+					<label for="address">Address</label>
+					<input type="text" placeholder="address" id="address" name="address">
+				</div>
+				<div>
+					<label for="pin">PINCODE</label>
+					<input id="pin" type="text" placeholder="pin" name="pin">
+				</div>
+				
+			</div>
+			<div class="checkout-row">
+				<div>
+					<label for="city">City</label>
+					<input type="text" placeholder="city" id="city" name="city">
+				</div>
+				
+				<div>
+					<label for="state">State</label>
+					<input id="state" type="text" placeholder="state" name="state">
+				</div>
+				
+			</div>
+
+			<legend>PAYMENT options</legend>
+			<ul>
+
+				<div>
+					<input type="radio" id="cod" name="payment" value="True">
+					<label for="cod">COD - cash on delivery</label>
+				</div>
+
+				<div>
+					<input type="radio" id="debit" name="payment" value="True">
+					<label for="debit">Debit Card</label>					
+				</div>
+
+				<div>
+					<input type="radio" id="credit" name="payment" value="True">
+					<label for="credit">Credit Card</label>				
+				</div>
+
+			</ul>
+
+			<button class="normal" value="True" name="ordered">Continue</button>
+
+		</form>
+		
+		<div id="checkout-items">
+			<h3 style="text-align: center; margin-bottom: 10px;">Items</h3>
+			{%for order_item in orders.item.all %}
+				<div>
+					<p class="forloop">{{forloop.counter}}</p>
+					<img src="{{order_item.item.image.url}}">
+					<h6>{{order_item.item.company}}</h6>
+					<h6>{{order_item.item.name}}</h6>
+					<p>${{order_item.item.price}}</p>
+				</div>
+				<hr>
+			{%endfor%}
+			<p class="totalAmount">Total Amount - <b>${{orders.final_price}}</b></p>
+			
+
+		</div>
+
+	</section>
+
+{%endblock content%}

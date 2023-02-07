@@ -1,0 +1,100 @@
+#orderdetail{
+	display: flex;
+	margin-bottom: 50px;
+}
+
+#orderdetail-total{
+	color: #088178;
+	text-align:center; 
+	text-decoration: underline;
+}
+
+#orderD{
+	width: 600px;
+	display: flex;
+    margin: 10px 90px auto;
+    cursor: pointer;
+    width: fit-content;
+    box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.02);
+	transition: 0.2s ease;
+}
+
+#orderD:hover{
+	box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.06);
+}
+
+#orderD img{
+	border-radius: 5px;
+}
+
+#orderD div{
+	background: #088178;
+	border-top-right-radius: 3px;
+	border-bottom-right-radius: 3px;
+
+}
+#orderD-d h6{
+	color: #fff;
+	font-size: 11px;
+}
+
+#orderD-d h6 span{
+	background: #B5F1CC;
+	border-radius: 50%;
+	padding: 1px 5px 1px 5px;
+	border: 1px solid #AAE3E2;
+	color: #301E67;
+}
+
+#orderD-d p{
+	color: #fff;
+	font-size: 11px;
+}
+
+
+#orderD-d .ordered-date{
+	background-color: #FCE22A;
+	color: black;
+	padding: 5px;
+	border-radius: 5px;
+	font-size: 13px;
+	font-weight: 700;
+}
+
+#orderD-d h4{
+	color: #fff;
+	font-size: 15px;
+}
+
+
+#orderdetail div{
+	padding: 10px;
+}
+
+#orderdetail .order-info{
+	margin: 20px;
+}
+#orderdetail .order-info h4{
+	text-decoration: underline;
+}
+
+#orderdetail .order-info p{
+	display: flex;
+	font-size: 13px;
+}
+#orderdetail .order-info p b.b1{
+	margin: 0px 0px 0px 25px;
+}
+#orderdetail .order-info div.buttons{
+    margin-top: 1rem;
+}
+
+#orderdetail .order-info div.buttons a{
+	text-decoration: none;
+	background: #088178;
+	color: #fff;
+}
+
+#product1.orderdetailsimilarproduct h4{
+ color: #088178;
+}

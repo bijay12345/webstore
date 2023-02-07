@@ -1,0 +1,74 @@
+{%extends 'shop/base.html'%}
+{%block content%}
+
+	<section id="page-header" class="about-header">
+		<h2>#KnowUs</h2>
+		<p>Lorem ipsum dolor sit amet, consectetur.</p>
+	</section>
+
+	<section id="about-head" class="section-p1">
+		<img src="{{items.aboutimage.url}}">
+		<div>
+			<h2></h2>
+			<p>{{items.aboutheader}}</p>
+			<abbr title="">{{items.aboutheaderparagraph}}</abbr>
+			<br>
+			<br>
+
+			<marquee bgcolor="#ccc" loop="-1" scrollamount="5" width="100%">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+			tempor incididunt ut labore et dolore magna aliqua.</marquee>
+		</div>
+	</section>
+
+	<section id="about-app" class="section-p1">
+		<h1>Download our <a href="#">App</a></h1>
+		<div class="video">
+			<video autoplay muted loop src="{{items.aboutVideo.url}}"></video>
+		</div>
+	</section>
+
+	<section id="feature" class="section-p1">
+		{%for feature in features%}
+			<div class="fe-box">
+				<img src="{{feature.images.url}}">
+				<h6>{{feature.featuretext}}</h6>
+			</div>
+		{%endfor%}
+	</section>
+
+	<section id="newsletter" class="section-p1 section-m1">
+		<div class="newstext">
+			<h4>
+				Sign up for newsletter
+			</h4>
+			<p>Get E-mail updates about or latest shop and <span>special offers.</span></p>
+		</div>
+		<div class="form">
+			<input type="text" name="email" placeholder="Your email address">
+			<button class="normal">
+				Sign Up
+			</button>
+		</div>
+		
+	</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{%endblock content%}

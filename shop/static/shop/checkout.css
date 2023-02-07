@@ -1,0 +1,73 @@
+
+
+#form-details form legend{
+	padding-bottom: 2rem;
+}
+
+#form-details .checkout-row{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	width: 100%;
+}
+
+#form-details .checkout-row div{
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+
+#form-details .checkout-row div label{
+	font-weight: 500;
+}
+#form-details .checkout-row div input{
+	width: 99%;
+}
+
+#form-details form ul{
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 20px;
+}
+
+#form-details form ul input{
+	width: initial;
+	margin: 2px 10px 10px 10px;
+}
+
+#checkout-items{
+    width: 40%;
+    padding: 10px 0px 10px 30px;
+}
+
+#checkout-items div{
+	display: flex;
+	justify-content: space-between;
+	border-radius: 10px;
+	text-align: center;
+	padding: 10px;
+	
+}
+#checkout-items div h6{
+	margin: auto;
+	padding: 10px;
+}
+#checkout-items div p{
+	margin: auto;
+	padding: 10px;
+
+}
+
+#checkout-items div p.forloop{
+	width: fit-content;	
+}
+
+#checkout-items div img{
+	width: 70px;
+	margin: auto;
+}
+
+#checkout-items p.totalAmount{
+	text-align: right;
+    margin-right: 25px;
+}

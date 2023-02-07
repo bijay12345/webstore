@@ -1,0 +1,63 @@
+{%extends 'shop/base.html'%}
+{%block content%}
+
+<h4 id="orderdetail-total" style="margin: 2rem;">Total Bill Amount - ${{products.get_final_price}}</h4>
+<section id="orderdetail">
+		<div class="f1">
+		{%for product in products.item.all%}
+			<div id="orderD">
+				<img src="{{product.item.image.url}}" width="200px" id="MainImg">
+				<div id="orderD-d">
+					<h6>{{product.item.company}} <span>{{product.size}}</span></h6>
+					<h4>{{product.item.name}}</h4>
+					<p>Quantity - {{product.quantity}}</p>
+					<p>Price- ${{product.item.price}}</p>
+					<p>Total pay - ${{product.get_total_price}}</p>
+					<p class="ordered-date">Ordered ON - {{products.ordered_date}}</p>
+				</div>
+			</div>
+		{%endfor%}
+		</div>
+
+		<div class="order-info">	
+			<h4>Billing Details</h4>
+			<h5 style="margin-top: 25px;">Contact: </h5>
+			<p><b>Primary number</b> - {{products.billing_address.primaryNumber}} <b class="b1"> Secondary number</b> - {{products.billing_address.secondaryNumber}}</p>
+			<hr>
+			<h5 style="margin-top: 25px;">Address: </h5>
+			<p>{{products.billing_address.street}}, {{products.billing_address.address}}, {{products.billing_address.city}}, {{products.billing_address.state}}, <b>Pin</b> - {{products.billing_address.pincode}}</p>
+			<hr>
+			<div class="buttons">
+				<a href="{%url 'shop'%}" class="buttn">Continue Shopping</a>
+			</div>
+			
+		</div>
+
+</section>
+
+<hr class="dotted">
+
+<section id="product1" class="section-p1 orderdetailsimilarproduct">
+	<h4> Similar Product of your interest</h4>
+	<div class="pro-container">
+		{%for item in items%}
+			<div class="pro" onclick="window.location.href='{%url 'detail' item.id%}'">
+				<img src="{{item.image.url}}" alt="">
+				<div class="des">
+					<span>{{item.company}}</span>
+					<h5>{{item.name}}</h5>
+					<div class="star">
+						<i class="fas fa-star"></i>
+						<i class="fas fa-star"></i>
+						<i class="fas fa-star"></i>
+						<i class="fas fa-star"></i>
+						<i class="fas fa-star"></i>
+					</div>
+					<h4>${{item.price}}</h4>
+				</div>
+			</div>
+		{%endfor%}
+	</div>
+</section>
+
+{%endblock content%}

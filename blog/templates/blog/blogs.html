@@ -1,0 +1,70 @@
+{%extends 'shop/base.html'%}
+{%block content%}
+	<section id="page-header" class="blog-header">
+		<h2>#READ MORE</h2>
+		<p>Read all case studies about our products!</p>
+	</section>
+
+	<section id="blog">
+		{%for blog in blogs%}
+			<div class="blog-box">
+				<div class="blog-img">
+					<img src="{{blog.image}}">
+				</div>
+				<div class="blog-details">
+					<h4>{{blog.title}}</h4>
+					<p>{{blog.description}}</p>
+					<a href="{%url 'blog-detail' blog.id%}">Continue Reading</a>
+				</div>
+				<h1>{{blog.small_date}}</h1>
+			</div>
+		{%endfor%}
+	</section>
+
+	<section id="pagination" class="section-p1">
+			{%if blogs.has_previous%}
+				<a href="?page={{blogs.previous_page_number}}"><i class="fa-solid fa-arrow-left"></i></a>
+			{%endif%}
+
+			<span class="current">
+	            Page {{blogs.number}} of {{ blogs.paginator.num_pages }}.
+	        </span>
+
+			{%if blogs.has_next%}
+				<a href="?page={{blogs.next_page_number}}"><i class="fa-solid fa-arrow-right"></i></a>
+			{%endif%}
+	</section>
+
+	<section id="form-details">
+		<form action="{%url 'create-blog'%}" class="blog-form" method="POST" enctype="multipart/form-data">
+			{%csrf_token%}
+			<h2 style="margin: auto;">Be Creative</h2>
+			<input type="text" placeholder="Title" name="Title">
+			<textarea cols="30" rows="10" name="description" placeholder="Your Idea ...."></textarea>
+	          <div class="input-group mb-3">
+	            <input type="file" class="form-control" id="inputGroupFile01" name="image">
+	          </div>
+			<button class="normal" type="submit">Post</button>
+		</form>
+	</section>
+
+
+
+
+	<section id="newsletter" class="section-p1 section-m1">
+		<div class="newstext">
+			<h4>
+				Sign up for newsletter
+			</h4>
+			<p>Get E-mail updates about or latest shop and <span>special offers.</span></p>
+		</div>
+		<div class="form">
+			<input type="text" name="email" placeholder="Your email address">
+			<button class="normal">
+				Sign Up
+			</button>
+		</div>
+		
+	</section>
+
+{%endblock content%}
