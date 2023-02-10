@@ -1,63 +1,58 @@
 {%extends 'shop/base.html'%}
 {%block content%}
 
-<section id="form-details">
+<section id="form-details" class="profile-details">
 	<div class="profile-info">	
 		<img src="{{request.user.profile.image.url}}">
 	</div>
 
 	<form method="POST" enctype="multipart/form-data">
 		{%csrf_token%}
-		<legend>Update your profile</legend>
 		{{u_form}}
 		{{p_form}}
 		<button class="normal">Update</button>
 	</form>
 </section>
 
-<section id="profileOrder">
-	<div class="orders">	
-		<h3 class="order-heading">Your Orders <i class="fa-solid fa-cart-shopping"></i></h3>
-		{%for orderss in orders%}
-			<div class="order-details" >
-				<h5 class="order-no">Order No. {{forloop.counter}}</h5>
-				<div id="order-row">
-
-					{%for order in orderss.item.all%}
-						<div class="order-card" onclick="window.location.href='{%url 'orderDetail' order.id%}'">
-							<img src="{{order.item.image.url}}">
-							<p class="ordered-date"><i class="fa-regular fa-calendar-days"></i> {{orderss.ordered_date}}</p>
-							<h5>{{order.item.company}}</h5>
+<section id="product1" class="section-p1 profile-orders">
+	<h3>Orders <i class="fa-solid fa-cart-plus"></i></h3>
+	<div class="pro-container">
+		<div id="order-row"> 
+			{%for orderss in orders%}
+				{%for order in orderss.item.all%}	
+					<div class="pro" onclick="window.location.href='{%url 'orderDetail' order.id%}'">
+						<img src="{{order.item.image.url}}" alt="">
+						<div class="des">
+							<span>{{order.item.company}}</span>
 							<h5>{{order.item.name}}</h5>
-							<p class="price">$ {{order.get_total_price}}</p>
-							<p style="text-align: center; color: blue;">View </p>
+							<h4>${{order.item.price}}</h4>
+							<p>ordered on {{orderss.ordered_date}}</p>
 						</div>
-					{%endfor%}
-
-				</div>
-			</div>
-		{%endfor%}
+					</div>
+				{%endfor%}
+			{%endfor%}
+		</div>
 	</div>
+	
+	<hr>
 
-<hr>
-
-	<div class="f1">
+	<div id="likedProducts">
 		<h3>liked Products <i class="fa-solid fa-heart" id="liked"></i></h3>
-		{%for product in likedProducts%}
-			<div class="liked-product-card" onclick="window.location.href='{%url 'detail' product.id%}'">
-				<h6>{{product.company}}</h6>
-				<img src="{{product.image.url}}">
-				<div>
-					<h4>{{product.name}}</h4>
-					<p>Price- ${{product.price}}</p>
+		<div class="pro-container"> 
+			{%for product in likedProducts%}	
+				<div class="pro" onclick="window.location.href='{%url 'detail' product.id%}'">
+					<img src="{{product.image.url}}" alt="">
+					<div class="des">
+						<span>{{product.company}}</span>
+						<h5>{{product.name}}</h5>
+						<h4>${{product.price}}</h4>
+					</div>
 				</div>
-			</div>
-		{%endfor%}
+			{%endfor%}
+		</div>
 	</div>
-
-
-
 
 </section>
+
 
 {%endblock content%}

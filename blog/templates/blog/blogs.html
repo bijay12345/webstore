@@ -36,7 +36,7 @@
 	</section>
 
 	<section id="form-details">
-		<form action="{%url 'create-blog'%}" class="blog-form" method="POST" enctype="multipart/form-data">
+		<form action="{%url 'create-blog'%}" id="blog-form" method="POST" enctype="multipart/form-data">
 			{%csrf_token%}
 			<h2 style="margin: auto;">Be Creative</h2>
 			<input type="text" placeholder="Title" name="Title">

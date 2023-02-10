@@ -10,7 +10,8 @@
 @import "blog.css";
 @import "productdetail.css";
 @import "checkout.css";
-@import url("http://127.0.0.1:8000/static/users/profile.css ");
+@import url("http://127.0.0.1:8000/static/users/profile.css");
+@import url("http://127.0.0.1:8000/static/blog/main.css");
 @import "orderdetail.css";
 @import "blog/static/blog/main.css";
 
@@ -310,8 +311,18 @@ body{
 		padding: 40px;
 	}
 	#form-details form{
-		width: 50%;
+		width: 100%;
 	}
+
+	#form-details{
+        flex-direction: column;
+    }
+
+    .profile-details form{
+        width: 100%;
+        margin-top: 30px;
+        justify-content: center;
+    }
 
 }
 

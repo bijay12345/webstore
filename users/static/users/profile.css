@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    margin: 10px auto auto;
+    margin: 0px auto;
 }
 
 #form-details .profile-info div{
@@ -31,146 +31,46 @@
 /*          ---------------------------        ORDER DETAILS CARD          ------------------------ */
 
 
-#profileOrder .orders{
-    margin: 10px;
-    padding: 50px;
+.pro-container #order-row{
     display: flex;
+    align-items: center;
+    flex-wrap: wrap;
     justify-content: center;
-    flex-wrap: wrap;
-    align-items: center;
-    position: relative;
 }
 
-.orders .order-heading{
-    position: absolute;
-    top: 5px;
-    left: 50%;
+.profile-orders .fa-cart-plus{
+    color: #26a3a7;
 }
 
-.orders .order-heading i{
-    color: blue;
-}
-
-
-#profileOrder .orders h3,
-#profileOrder .f1 h3{
-    text-align: center;
-    font-weight: 300;
-}
-
-
-
-.order-details{
-    box-shadow: 20px 20px 30px rgb(0 0 0 / 2%);
-    transition: 0.2s ease;
-    cursor: pointer;
-    width: fit-content;
-    border: 1px solid lightgrey;
-    border-radius: 7px;
-    margin: auto;
-}
-.order-details:hover{
-    box-shadow: 20px 20px 30px rgb(0 0 0 / 6%);
-}
-
-.order-details .order-no{
-    width: fit-content;
-    background: blue;
-    color: white;
-    padding: 3px;
-    margin: 0px;
-    font-size: 6px;
-    border-radius: 50px;
-}
-
-#order-row{
-    display: flex;
-    margin: 0px 10px 10px 10px;
-    flex-wrap: wrap;
-    width: fit-content;
-}
-#order-row .order-card{
-    position: relative;
-    width: 150px;
-    padding: 5px 10px;
-    cursor: pointer;
-    box-shadow: 20px 20px 30px rgb(0 0 0 / 2%);
-    transition: 0.2s ease;
-    margin: 0px 30px;
-}
-
-
-#order-row .order-card img{
-    width: 100%;
-}
-
-.order-card .ordered-date{
-    float: right;
-    font-size: 8px;
-    margin: 0;
-    font-weight: 800;
-    background: #B5F1CC;
-    padding: 2px;
-    border-radius: 4px;
-}
-
-.order-card h5{
-    font-size: 8px;
-    padding: 2px;
-}   
-
-.order-card .price{
-    margin: 5px 0px;
-}
-
-
-
-.f1{
-    display: flex;
-    align-items: center;
+.profile-orders .pro-container{
     justify-content: flex-start;
-    padding: 50px;
-    position: relative;
+    margin-bottom: 20px;
 }
 
-.f1 h3{
-    position: absolute;
-    top: 10px;
-    left: 50%;
+.profile-orders h3{
+    font-size: 30px;
 }
 
-.liked-product-card{
-    width: 200px;
-    border: 1px solid #9b9191;
-    border-radius: 5px;
-    padding: 5px;
+#order-row .pro{
+    width: 15%;
     margin: 10px;
-    cursor: pointer;
 }
 
-.liked-product-card img{
-    width: 190px;
-    padding: 10px;
-    border-radius: 100px;
+#order-row p{
+    margin:5px 0 5px 0;
+    text-align: left;
+    font-size: 13px;
 }
-.liked-product-card h4{
-    font-size: 10px;
-    text-decoration: underline;
-}
-.liked-product-card div{
-    padding: 10px;
+#likedProducts{
+    margin-top: 20px;
 }
 
-
-
-
-/*      - ------------ ------  ------------  Register page   ----- ----------- --------------------- */
-#registerform{
-	margin: auto;
+#likedProducts .pro-container{
+    justify-content: flex-start;
 }
 
-
-
-
-/* --------------------------         Rating card styles              --------------------- */
+#likedProducts .pro{
+    margin: 10px;
+    width: 15%;
+}
 

@@ -9,9 +9,15 @@
 	width: 40%;
 }
 
-#contact-details .details span,
-#form-details form span{
+#contact-details .details span{
 	font-size: 12px;
+}
+
+#form-details form h4{
+	font-size: 12px;
+	margin-left: 45%;
+	color: #6e6b6b;
+	margin-bottom: 30px;
 }
 
 #contact-details .details h2,
