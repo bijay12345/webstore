@@ -38,13 +38,14 @@
 	</section>
 
 	<section id="form-details">
-		<form>
+		<form method="POST" action="{%url 'contact-us'%}">
+			{%csrf_token%}
 			<span>CONTACT US</span>
 			<h2 style="margin: auto;">Fill the form</h2>
-			<input type="text" placeholder="Your name" name="">
-			<input type="text" placeholder="Email" name="">
-			<input type="text" placeholder="Subject" name="">
-			<textarea cols="30" rows="10" placeholder="Your Message"></textarea>
+			<input type="text" placeholder="Your name" name="name">
+			<input type="text" placeholder="Email" name="email">
+			<input type="text" placeholder="Subject" name="subject">
+			<textarea cols="30" rows="10" placeholder="Your Message" name="message"></textarea>
 			<button class="normal">Submit</button>
 		</form>
 		<div class="people">

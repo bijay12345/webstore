@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.validators import MaxValueValidator
 
 
 CATEGORY_CHOICES=(
@@ -24,7 +25,6 @@ class Items(models.Model):
 	image2=models.ImageField(upload_to="products",default="default.jpg")
 	image3=models.ImageField(upload_to="products",default="default.jpg")
 	image4=models.ImageField(upload_to="products",default="default.jpg")
-
 
 	def __str__(self):
 		return f"{self.name} from {self.company}"
@@ -150,3 +150,21 @@ class FeedBack(models.Model):
 
 	def __str__(self):
 		return self.name
+
+
+class Rating(models.Model):
+	user=models.ForeignKey(User,on_delete=models.CASCADE)
+	item=models.ForeignKey(Items,on_delete=models.CASCADE)
+	rating=models.IntegerField(validators=[MaxValueValidator(5)])
+
+	def __str__(self):
+		return self.user.username
+
+class Contact(models.Model):
+	name=models.CharField(max_length=100)
+	email=models.EmailField()
+	subject=models.CharField(max_length=1000)
+	message=models.TextField()
+	
+	def __str__(self):
+		return f"{self.name}'s message"

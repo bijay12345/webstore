@@ -6,7 +6,7 @@
 		<div class="f1">
 			{%if rated == False%}
 				<div class="stars">
-				  <form action="{%url 'review'%}" class="star-form" method="POST">
+				  <form action="{%url 'rating' product.id %}" class="star-form" method="POST">
 				  	{%csrf_token%}
 				  	<div>
 					  	<input class="star star-5" id="star-5" value="5" type="radio" name="star"/>
@@ -20,7 +20,7 @@
 					    <input class="star star-1" id="star-1" value="1" type="radio" name="star"/>
 					    <label class="star star-1" for="star-1"></label>
 				  	</div>
-			        <button class="normal" id="rate-button" name="item_id" type="submit" value="{{product.id}}" class="ratebutton">
+			        <button class="normal" id="rate-button" name="item_id" type="submit" value="{{product.item.id}}" class="ratebutton">
 						RATE
 					</button>
 				  </form>

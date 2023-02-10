@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Items, Features, Blog,Banner,AboutItems,HomeBanner,Logo,Buttons,FooterInfos,FeedBack,OrderItem,Order,BillingAddress
+from .models import Items, Features, Blog,Banner,AboutItems,HomeBanner,Logo,Buttons,FooterInfos,FeedBack,OrderItem,Order,BillingAddress,Rating
 
 
 class OrderItemAdmin(admin.ModelAdmin):
@@ -23,3 +23,5 @@ admin.site.register(FeedBack)
 admin.site.register(OrderItem,OrderItemAdmin)
 admin.site.register(Order,OrderAdmin)
 admin.site.register(BillingAddress)
+
+admin.site.register(Rating)

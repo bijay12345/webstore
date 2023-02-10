@@ -18,20 +18,18 @@
 	</section>
 
 	<section id="product1" class="section-p1">
-		<h2>Featured Prodcut</h2>
+		<h2>Featured Products</h2>
 		<p>Summer Collection New Modern Design</p>
 		<div class="pro-container">
 			{%for item in items%}
+				
 				<div class="pro" onclick="window.location.href='{%url 'detail' item.id%}'">
 					<img src="{{item.image.url}}" alt="">
 					<div class="des">
 						<span>{{item.company}}</span>
 						<h5>{{item.name}}</h5>
 						<div class="star">
-							<i class="fas fa-star"></i>
-							<i class="fas fa-star"></i>
-							<i class="fas fa-star"></i>
-							<i class="fas fa-star"></i>
+							{{item.avgrating}}
 							<i class="fas fa-star"></i>
 						</div>
 						<h4>${{item.price}}</h4>

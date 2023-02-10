@@ -1,7 +1,6 @@
 from rest_framework import serializers
-from .models import Items,Order,OrderItem,BillingAddress
+from .models import Items,Order,OrderItem,BillingAddress,Rating,Contact
 from django.contrib.auth.models import User
-from users.models import Reviews
 
 class ItemSerializer(serializers.ModelSerializer):
 	image=serializers.ImageField(
@@ -18,9 +17,22 @@ class ItemSerializer(serializers.ModelSerializer):
 		max_length=None, use_url=True,required=False
 		)
 	likers=serializers.StringRelatedField(many=True,read_only=True)
+	avgrating = serializers.SerializerMethodField()
+
+	def get_avgrating(self,obj):
+		ratings=Rating.objects.filter(item=obj)
+		count = len(ratings)
+		Rsum = 0
+		for rvw in ratings:
+			Rsum += rvw.rating
+		if Rsum == 0:
+			return 0
+		s=Rsum/count
+		return round(s,1)
+
 	class Meta:
 		model=Items  
-		fields = ["id","name","company","description","likers","price","image","image2","image3","image4"]
+		fields = ["id","name","company","description","likers","price","image","image2","image3","image4","avgrating"]
 
 
 class OrderItemSerializer(serializers.ModelSerializer):
@@ -30,7 +42,6 @@ class OrderItemSerializer(serializers.ModelSerializer):
 
 	def get_total_price(self,obj):
 		return obj.quantity*obj.item.price
-
 
 	class Meta:
 		model=OrderItem
@@ -68,3 +79,18 @@ class LikeSerializer(serializers.ModelSerializer):
 	class Meta:
 		model=Items 
 		fields=["likers"]
+
+
+
+	
+class RatingSerializer(serializers.ModelSerializer):
+	class Meta:
+		model=Rating
+		fields=["user","item","rating"]
+
+
+
+class ContactSerializer(serializers.ModelSerializer):
+	class Meta:
+		model=Contact
+		fields="__all__"

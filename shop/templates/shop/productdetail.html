@@ -4,22 +4,22 @@
 
 <section id="prodetails" class="section-p1">
 	<div class="single-pro-image">
-		<img src="{{product.image.url}}" width="100%" id="MainImg">
+		<img src="{{product.image}}" width="100%" id="MainImg">
 		<div class="small-img-group">
 			<div class="small-img-col">
-				<img src="{{product.image.url}}" width="100%" class="small-img">
+				<img src="{{product.image}}" width="100%" class="small-img">
 			</div>
 
 			<div class="small-img-col">
-				<img src="{{product.image2.url}}" width="100%" class="small-img">
+				<img src="{{product.image2}}" width="100%" class="small-img">
 			</div>
 
 			<div class="small-img-col">
-				<img src="{{product.image3.url}}" width="100%" class="small-img">
+				<img src="{{product.image3}}" width="100%" class="small-img">
 			</div>
 
 			<div class="small-img-col">
-				<img src="{{product.image4.url}}" width="100%" class="small-img">
+				<img src="{{product.image4}}" width="100%" class="small-img">
 			</div>
 
 		</div>
@@ -27,6 +27,7 @@
 	<div class="single-pro-details">
 		<h6>{{product.company}}</h6>
 		<h4>{{product.name}}</h4>
+		<p class="rating">{{product.avgrating}}<i class="fas fa-star"></i></p>
 		<h2>${{product.price}}</h2>
 		<form method="POST" action="{%url 'add_to_cart' product.id%}">
 			{% csrf_token %}

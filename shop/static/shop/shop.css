@@ -52,6 +52,13 @@
 	cursor: pointer;
 }
 
+#shopRating{
+	margin: 1px 0px;
+    font-size: 13px;
+    padding: 3px;
+    font-weight: 500;
+}
+
 
 /*PAGINATION*/
 #pagination{

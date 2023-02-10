@@ -1,17 +1,16 @@
 from django.shortcuts import render,get_object_or_404,redirect
 from .models import Items,Logo,Buttons,Features,Banner,Blog,\
-AboutItems,FeedBack,OrderItem,Order,BillingAddress,Payment
+AboutItems,FeedBack,OrderItem,Order,BillingAddress,Payment,Rating
 from django.contrib.auth.decorators import login_required
 from datetime import date
 from rest_framework.views import APIView
-from .serializers import ItemSerializer,OrderSerializer,BillingSerializer,LikeSerializer
+from .serializers import ItemSerializer,OrderSerializer,BillingSerializer,LikeSerializer,RatingSerializer,ContactSerializer
 from rest_framework.renderers import TemplateHTMLRenderer
 from rest_framework.response import Response
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Count
 from django.core.paginator import Paginator
-from users.models import Reviews
 
 
 @login_required
@@ -35,11 +34,6 @@ def home(request):
 	print(request.GET.get("page"))
 
 	return render(request,"shop/home.html",context)
-
-@login_required
-def shop(request):
-	products=Items.objects.all()
-	return render(request,"shop/shop.html",{"products":products,"s_status":"active"})
 
 
 @login_required
@@ -79,13 +73,13 @@ def add_to_cart(request,id):
 			order_item.save()
 		else:
 			if size != "None":
-				order_item.size_choices=size
+				order_item.size=size
 				order_item.save()
 			order.item.add(order_item)
 	else:
 		order=Order.objects.create(user=request.user)
 		if size != "None":
-			order_item.size_choices=size
+			order_item.size=size
 			order_item.save()
 
 		order.item.add(order_item)
@@ -187,18 +181,27 @@ def orderDetail(request,id):
 	order=Order.objects.get(item=item,ordered=True,user=request.user)
 
 	rated=False
-
-	if Reviews.objects.filter(orderItem=item,reviewed=True).exists():
+	if Rating.objects.filter(user=request.user,item=item.item.id).exists():
 		rated=True
 
 	return render(request,"shop/orderdetail.html",{"product":item,"items":items,"order":order,"rated":rated})
 
 
-
-
-
-
 # -------------------------------------------            API DEPLOYMENT            ---------------------------------------------------
+
+
+class HomeApiView(APIView):
+	renderer_classes=[TemplateHTMLRenderer]
+	def get(self,request,id=None,format=None):
+		if id is not None:
+			item=Items.objects.get(id=id)
+			serializer=ItemSerializer(item)
+			return Response({"product":serializer.data},template_name="shop/productdetail.html")
+		items=Items.objects.all()
+		serializer=ItemSerializer(many=True)
+		return Response({"items":serializer.data},template_name="shop/home.html")
+
+
 
 class ShopApiView(APIView):
 	renderer_classes=[TemplateHTMLRenderer]
@@ -305,3 +308,43 @@ class LikeView(APIView):
 			if serializer.is_valid(raise_exception=True):
 				item.likers.add(request.user)
 				return redirect("shop")
+
+
+class RatingView(APIView):
+	def post(self,request,id,format=None):
+		d=request.data
+		rating=d["star"]
+		item_id=d['item_id']
+		user=request.user
+		item=get_object_or_404(Items,id=item_id)
+		data_={
+		"rating":rating,
+		"user":user.id,
+		"item":item.id,
+		}
+
+		serializer=RatingSerializer(data=data_)
+
+
+		if serializer.is_valid(raise_exception=True):
+			serializer.save()
+			messages.success(request,f"Thank you for your valuable rating")
+			return redirect("orderDetail",id=id)
+		else:
+			messages.warning(request,f"please rate correctly")
+			return redirect("orderDetail",id=id)
+		return redirect("orderDetail",id=id)
+
+
+class ContactApiView(APIView):
+	renderer_classes=[TemplateHTMLRenderer]
+	def post(self,request,format=None):
+		data=request.POST  
+		serializer=ContactSerializer(data=data)
+		if serializer.is_valid():
+			serializer.save()
+			messages.success(request,"Your query has reached us, We'll soon get back to you.")
+		else:
+			messages.error(request,"Please fill the form correctly")
+			return redirect("contact")
+		return redirect("contact")
